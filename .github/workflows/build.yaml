@@ -1,0 +1,69 @@
+name: Build with Maven
+
+
+on:
+  push:
+    branches: [ main ] 
+  # pull_request:  # Optional: Trigger on pull requests
+
+jobs:
+  build:
+    runs-on: self-hosted-EC2-linux-Runner  # ec2 instance connect label
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 11 for x64
+        uses: actions/setup-java@v4
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          architecture: x64
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.8.2
+
+      # Uncomment these steps if you want to run tests:
+      # - name: Run tests with Maven
+      #   run: mvn test
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Task1 
+        run: |
+          cd TEST1
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          cd ..
+
+      - name: Run Task2
+        run: |
+          cd TEST2
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          sleep 80
+          cd ..
+
+      - name: Run Task3
+        run: |
+          cd TEST3
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          cd ..
+
+      - name: Run Task4
+        run: |
+          cd TEST4
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          cd ..
+
+      - name: Run Task5
+        run: |
+          cd TEST5
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          cd ..
+
+      - name: Run Task6
+        run: |
+          cd TEST6
+          mvn com.smartbear.soapui:soapui-maven-plugin:5.5.0:test
+          cd ..

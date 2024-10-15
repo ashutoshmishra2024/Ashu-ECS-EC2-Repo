@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>soapui-poc</groupId>
+    <artifactId>resttest</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>eviware-soapui</id>
+            <url>https://www.soapui.org/repository/maven2/</url>
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.epam.reportportal</groupId>-->
+<!--            <artifactId>soapui</artifactId>-->
+<!--            <version>5.0.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <build>
+<!--        <sourceDirectory>src</sourceDirectory>-->
+
+        <plugins>
+<!--            <plugin>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <version>3.1</version>-->
+<!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <source>1.7</source>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <target>1.7</target>&ndash;&gt;-->
+<!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>com.smartbear.soapui</groupId>
+                <artifactId>soapui-maven-plugin</artifactId>
+                <version>5.5.0</version>
+                <dependencies>
+<!--                    <dependency>-->
+<!--                        <groupId>fife</groupId>-->
+<!--                        <artifactId>rsyntaxtextarea</artifactId>-->
+<!--                        <version>2.0.1</version>-->
+<!--                    </dependency>-->
+                </dependencies>
+                <configuration>
+<!--                    <runnerType>${soapRunnerType}</runnerType>-->
+                    <projectFile>${basedir}/poc-soapui-project.xml</projectFile>
+<!--                    <host>${app.hostPort}</host>-->
+                    <outputFolder>${project.build.directory}/soapui-reports</outputFolder>
+                    <exportAll>true</exportAll>
+<!--                    <coverage>false</coverage>-->
+                    <printReport>true</printReport>
+                    <junitReport>true</junitReport>
+                    <testFailIgnore>true</testFailIgnore>
+<!--                    <settingsFile>${user.home}/soapui-settings.xml</settingsFile>-->
+
+                    <globalProperties>
+                        <value>gmessage=Global Property</value>
+                    </globalProperties>
+                    <soapuiProperties>
+                        <property>
+                            <name>soapui.logroot</name>
+                            <value>${project.build.directory}/soapui-logs/</value>
+                        </property>
+                        <property>
+                            <name>soapui.ext.listeners</name>
+                            <value>${project.basedir}/ext/listeners</value>
+                        </property>
+                    </soapuiProperties>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
