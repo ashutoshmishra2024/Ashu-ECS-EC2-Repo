@@ -1,0 +1,34 @@
+name: CICD yaml
+on:
+  push:
+    branches: [ "main" ]
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
+ 
+jobs:
+
+  build:
+ 
+    runs-on: self-hosted-runner-image
+   
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login Dockerhub
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+     
+    # - name: Setup Docker Buildx
+    - uses: docker/setup-buildx-action@v2
+ 
+    # - name: Build the Docker argument
+      #run: docker --build-arg RUNNER_VERSION=2.319.1 .
+    - name: Build the Docker image  
+      run: docker build --build-arg RUNNER_VERSION=2.319.1 -t ashutoshmishra2024/self-hosted-runner-image .
+ 
+    - name: Push to Dockerhub
+      run: docker push ashutoshmishra2024/self-hosted-runner-image
+    - name: Pull Docker image
+      run: sudo docker pull ashutoshmishra2024/self-hosted-runner-image
