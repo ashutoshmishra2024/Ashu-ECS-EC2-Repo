@@ -1,4 +1,4 @@
-name: CICD yaml
+name: docker runner image
 on:
   push:
     branches: [ "main" ]
