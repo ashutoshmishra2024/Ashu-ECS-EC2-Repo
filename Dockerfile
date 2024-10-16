@@ -33,16 +33,6 @@ COPY startup.sh /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/startup.sh 
 
-# add over the start.sh script
-
-# ADD start.sh start.sh
- 
-# # make the script executable
-
-# RUN chmod +x start.sh
- 
-# set the user to "docker" so all subsequent commands are run as the docker user
-
 USER docker
  
 # set the entrypoint to the start.sh script
