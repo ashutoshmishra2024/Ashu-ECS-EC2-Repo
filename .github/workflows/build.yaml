@@ -10,27 +10,6 @@ jobs:
     runs-on: self-hosted-ECS-EC2-linux-Runner  # ec2 instance connect label
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Login Dockerhub
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-     
-    # - name: Setup Docker Buildx
-    - uses: docker/setup-buildx-action@v2
- 
-    # - name: Build the Docker argument
-      #run: docker --build-arg RUNNER_VERSION=2.319.1 .
-    - name: Build the Docker image  
-      run: docker build --build-arg RUNNER_VERSION=2.319.1 -t devopstest2024/ashu-ecs-ec2-repo .
-
-      
-    - name: Push to Dockerhub
-      run: docker push devopstest2024/Ashu-GH-Repo
-    - name: Pull Docker image
-      run: sudo docker pull devopstest2024/ashu-ecs-ec2-repo
-
     - uses: actions/checkout@v4
     - name: Set up JDK 11 for x64
       uses: actions/setup-java@v4
