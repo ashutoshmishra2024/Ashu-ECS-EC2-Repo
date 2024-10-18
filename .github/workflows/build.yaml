@@ -1,5 +1,4 @@
 name: Build with Maven
-
 on:
     workflow_run:
      workflows: ["docker-build.yaml"]
