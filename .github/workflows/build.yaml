@@ -2,7 +2,7 @@ name: Build with Maven
 
  on:
   workflow_run:
-   workflows: ["build-runner-image.yaml"
+   workflows: ["build-runner-image.yaml"]
    types:
    -completed
 
