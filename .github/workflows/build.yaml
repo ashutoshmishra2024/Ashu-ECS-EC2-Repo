@@ -1,10 +1,9 @@
 name: Build with Maven
 
- on:
-  workflow_run:
-   workflows: ["build-runner-image.yaml"]
-   types:
-   -completed
+on:
+    workflow_run:
+     workflows: ["build-runner-image.yaml"]
+     types: completed
 
  # push:
   #  branches: [ main ] 
@@ -12,7 +11,7 @@ name: Build with Maven
 
 jobs:
   build:
-    runs-on: self-hosted-runner-image  # ec2 instance connect label
+    runs-on: ubuntu-latest  # ec2 instance connect label
 
     steps:
     - uses: actions/checkout@v4
