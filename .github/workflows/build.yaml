@@ -4,7 +4,6 @@ on:
      workflows: ["docker runner image"]
      types: completed
 
-
  # push:
   #  branches: [ main ] 
   # pull_request:  # Optional: Trigger on pull requests
