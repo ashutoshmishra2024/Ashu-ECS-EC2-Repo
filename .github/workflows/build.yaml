@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted-runner-image  # ec2 instance connect label
+    runs-on: ubuntu-latest  # ec2 instance connect label
 
     steps:
     - uses: actions/checkout@v4
